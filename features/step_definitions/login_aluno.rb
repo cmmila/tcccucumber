@@ -8,7 +8,7 @@ Dado("que estou na pagina de login") do
   
   Quando("preencher o campo usuario com usuario aluno") do
     #preenchendo o campo que contem o name usuario com o email passado por parametro 
-    fill_in(name:'usuario', with: 'camila_cmarques@hotmail.com') 
+    fill_in(name:'usuario', with: 'email@hotmail.com') 
     sleep(5)
   end
   
