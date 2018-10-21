@@ -10,7 +10,7 @@ Quando("preencher o campo senha com a senha do usuario visitante") do
   sleep(5)
 end
 
-
+#@inscricao_evento_visitante
 Dado("que escolhi um determinado evento") do
   #encontrando o elemento  com id=sysEve e clicando nele 
   find_by_id('sysEve').click

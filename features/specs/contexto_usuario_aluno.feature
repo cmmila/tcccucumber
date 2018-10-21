@@ -22,6 +22,15 @@ Dado que cliquei no icone do Sys Eve
 Quando for direcionado para a pagina do sistema de eventos - Sys Eve
 Então devo visualizar os eventos ativos 
 
+@download_certificado_aluno
+Cenario: Validar Download do certificado de um evento de um usuário Aluno
+Dado que acessei o Sistema de Incrições em Eventos
+Quando acessar o Menu principal selecionando a opção Meus Certificados
+E for redirecionado para pagina dos certificados disponíveis
+E clicar em Gerar Certificado
+Entao download do certificado escolhido deverá ser realizado 
+
+
 
 
 

@@ -1,4 +1,4 @@
-#acesso_sistema_aluno
+#cenario_acesso_sistema_aluno
 Quando("clicar no icone do sistema de eventos") do
   #encontrando o elemento  com id=sysEve e clicando nele 
     find_by_id("sysEve").click
@@ -18,6 +18,7 @@ Quando("clicar no icone do sistema de eventos") do
     sleep(5)
   end
 
+  #cenario_eventos_ativos
   Dado("que cliquei no icone do Sys Eve") do
     #encontrando elemento por seu id=sysEve e clicando nele
     find_by_id('sysEve').click
@@ -43,13 +44,46 @@ Quando("clicar no icone do sistema de eventos") do
     
     #evento2 = find('[href="./?eve=26"]').hover
     #sleep(8)
-    #titulo_evento2 = find('[href="./?eve=26"]h3').text 
-    #puts "Título evento 2 : : #{titulo_evento2}"
+    #titulo_evento3 = find('[href="./?eve=26"]h3').text 
+    #puts "Título evento 2 : : #{titulo_evento3}"
     
     sleep(3)
-    evento3 = find('[href="./?eve=24"]').hover
+    evento2 = find('[href="./?eve=24"]').hover
     sleep(8)
-    titulo_evento3 = find('[href="./?eve=24"] h3').text
-    puts "Título evento 3 : #{titulo_evento3}" 
+    titulo_evento2 = find('[href="./?eve=24"] h3').text
+    puts "Título evento 2 : #{titulo_evento2}" 
 
   end
+
+  #cenario download_certificado_aluno
+  Quando("acessar o Menu principal selecionando a opção Meus Certificados") do
+    #clicando sobre o menu principal
+    click_on 'Menu'
+     #encontrando elemento que contenha o href descrito e efetuando evento hover sobre ele
+    find(:css,'[href="/syseve/inscricoes/?acao=certificados"]').hover
+    sleep(3)
+    click_on 'Meus Certificados'
+  end
+  
+  Quando("for redirecionado para pagina dos certificados disponíveis") do
+    expect(page).to have_current_path('/syseve/inscricoes/?acao=certificados')
+    sleep(3)
+  end
+
+  Quando("clicar em Gerar Certificado") do
+    find(:css, 'a[href="./?acao=gerar_certificado&eve=9"]').click
+    sleep(15)
+end
+
+  Entao("download do certificado escolhido deverá ser realizado") do
+    title = page.all("div.container ") .each do |div_row|
+      conteudo_teste = div_row.text
+      sleep(2)
+      conteudo_teste.each_line do |line|
+        if line.include? "Sustentabilidade"
+          puts "Baixou o PDF do Evento: #{line}"
+        end
+    end
+    sleep(10)
+  end
+end

@@ -10,6 +10,7 @@ Quando("preencher o campo senha com a senha do usuario Admin") do
    sleep(5)
   end
 
+  #cenario_validar_inscricao_admin
   Dado("que acessei o Sistema de Incrições em Eventos") do
     #encontrando o elemento  com id=sysEve e clicando nele 
     find_by_id("sysEve").click
@@ -68,7 +69,6 @@ Entao("devo visualizar as incrições que realizei no evento") do
         if line.include? "Ministrante(s):"
           puts "#{line}"
         end
-
       end
     end
   end
