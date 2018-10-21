@@ -6,7 +6,7 @@ end
 
 Quando("preencher o campo senha com a senha do usuario visitante") do
   #preenchendo o campo que contem o name senha com a senha passada por parametro 
-  fill_in(name:'senha', with: 'camila')
+  fill_in(name:'senha', with: 'senha')
   sleep(5)
 end
 
