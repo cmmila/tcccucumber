@@ -1,3 +1,5 @@
+require 'pdf-reader'
+
 #cenario_acesso_sistema_aluno
 Quando("clicar no icone do sistema de eventos") do
   #encontrando o elemento  com id=sysEve e clicando nele 
@@ -72,7 +74,7 @@ Quando("clicar no icone do sistema de eventos") do
 
   Quando("clicar em Gerar Certificado") do
     find(:css, 'a[href="./?acao=gerar_certificado&eve=9"]').click
-    sleep(15)
+    sleep(7)
 end
 
   Entao("download do certificado escolhido deverá ser realizado") do
@@ -86,4 +88,21 @@ end
     end
     sleep(10)
   end
+  downloads = "/Users/camila/Downloads"
+    #puts "diretorio"
+    if Dir.pwd != downloads
+      Dir.chdir( downloads )
+    end
+      puts "abacaxi"
+      puts "#{downloads}"
+      arquivospdf = Dir["/Users/camila/Downloads/documento_*.pdf"]
+      arquivo_baixado = arquivospdf[0]
+      puts "#{arquivo_baixado}"
+
+      PDF::Reader.open("#{arquivo_baixado}") do |reader|
+      
+      reader.pages.each do |page|
+        puts page.text
+      end
+      end
 end
