@@ -1,3 +1,4 @@
+#exigindo a utilizacao da gem pdf-reader nesse arquivo
 require 'pdf-reader'
 
 #cenario_acesso_sistema_aluno
@@ -68,40 +69,57 @@ Quando("clicar no icone do sistema de eventos") do
   end
   
   Quando("for redirecionado para pagina dos certificados disponíveis") do
+    #verificando que a pagina atual contenha o caminho passado por parametro
     expect(page).to have_current_path('/syseve/inscricoes/?acao=certificados')
     sleep(3)
   end
 
   Quando("clicar em Gerar Certificado") do
+    #encontrando elemento que contenha o href descrito e efetuando evento de clique sobre ele
+    #baixando o certificado do evento de id=9
     find(:css, 'a[href="./?acao=gerar_certificado&eve=9"]').click
-    sleep(7)
+    sleep(5)
 end
 
   Entao("download do certificado escolhido deverá ser realizado") do
-    title = page.all("div.container ") .each do |div_row|
-      conteudo_teste = div_row.text
+    #declarando a variavel eventos_div_conteiner para receber todos os elementos contidos dentro da div.container 
+    #e percorrendo cada linha dessa div
+    eventos_div_conteiner = page.all("div.container ") .each do |div_linha|
+      #declarando a variavel div_eventos para receber o texto de cada linha da div container
+      div_eventos = div_linha.text
       sleep(2)
-      conteudo_teste.each_line do |line|
+      #percorrendo cada linha da variavel div_eventos que armazena o texto das linhas da div container.
+      div_eventos.each_line do |line|
+        #verificando se a linha inclui a palavra "Sustentabilidade"
         if line.include? "Sustentabilidade"
           puts "Baixou o PDF do Evento: #{line}"
         end
     end
-    sleep(10)
+    sleep(8)
   end
+
+  #declarando a variavel downloads para receber o caminho passado
   downloads = "/Users/camila/Downloads"
-    #puts "diretorio"
+    #se o diretorio atual for diferente do caminho declarado na variavel downloads
     if Dir.pwd != downloads
+      #CHDIR(change working directory ) muda o diretorio atual para o contido na variavel downloads 
       Dir.chdir( downloads )
     end
-      puts "abacaxi"
+    #imprimindo o diretorio
       puts "#{downloads}"
+      #declarando a variavel arquivospdf para receber tudo que contiver 
+      #no diretorio do caminho passaod por parametro
       arquivospdf = Dir["/Users/camila/Downloads/documento_*.pdf"]
+      #declarando a variavel arquivo_baixado para receber a primeira posicao de todo 
+      #o diretorio contido na variavel arquivospdf
       arquivo_baixado = arquivospdf[0]
       puts "#{arquivo_baixado}"
-
+      #comando utilizado pela gem pdf-reader que 
+      #abre o arquivo baixado o lendo-o 
       PDF::Reader.open("#{arquivo_baixado}") do |reader|
-      
+      #executando um for para ler cada pagina desse arquivo 
       reader.pages.each do |page|
+        #imprimindo na tela cada texto por pagina 
         puts page.text
       end
       end

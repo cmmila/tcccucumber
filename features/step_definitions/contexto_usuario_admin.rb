@@ -6,7 +6,7 @@ Quando("preencher o campo usuario com usuario Admin") do
   
 Quando("preencher o campo senha com a senha do usuario Admin") do
    #preenchendo o campo que contem o name senha com a senha passada por parametro 
-   fill_in(name:'senha', with: 'senha')
+   fill_in(name:'senha', with: 'xxx')
    sleep(5)
   end
 

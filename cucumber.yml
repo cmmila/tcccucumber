@@ -1,0 +1,4 @@
+## YAML Templatesss
+# para gerar relatorio utilizar o comando no cenario desejado
+#--format html --out reports.html
+html: --format html --out=reports/relatrio.html

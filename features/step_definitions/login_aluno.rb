@@ -8,13 +8,13 @@ Dado("que estou na pagina de login") do
   
   Quando("preencher o campo usuario com usuario aluno") do
     #preenchendo o campo que contem o name usuario com o email passado por parametro 
-    fill_in(name:'usuario', with: 'email@hotmail.com') 
+    fill_in(name:'usuario', with: 'xxx') 
     sleep(5)
   end
   
   Quando("preencher o campo senha com a senha do usuario aluno") do
     #preenchendo o campo que contem o name senha com a senha passada por parametro 
-    fill_in(name:'senha', with: 'teste12345')
+    fill_in(name:'senha', with: 'xxx')
     sleep(5)
   end
 

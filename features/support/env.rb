@@ -4,6 +4,8 @@ require 'capybara/cucumber'
 
 require 'selenium-webdriver'
 
+require 'pdf-reader'
+
 #inicializando objeto capybara
 Capybara.configure do |config|
     #selenium #selenium_chrome #selenium_chrome_healess
